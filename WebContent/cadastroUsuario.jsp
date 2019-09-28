@@ -80,14 +80,14 @@
 
 						<td><input type="checkbox" id="ativo" name="ativo"
 							<%if (request.getAttribute("user") != null) {
-				BeanCursoJsp user = (BeanCursoJsp) request.getAttribute("user");
-
-				if (user.isAtivo()) {
-					out.print(" ");
-					out.print("checked=\"checked\"");
-					out.print(" ");
-				}
-			}%>>
+								BeanCursoJsp user = (BeanCursoJsp) request.getAttribute("user");
+			
+								if (user.isAtivo()) {
+									out.print(" ");
+									out.print("checked=\"checked\"");
+									out.print(" ");
+								}
+							}%>>
 						</td>
 
 
@@ -209,6 +209,7 @@
 						<td><input type="text" id="descricaoConsulta" name="descricaoConsulta"> </td>
 						<td><input type="submit" value="Pesquisar"> </td>
 					</tr>
+
 				</table> 
 			</li> 
 	</ul>
