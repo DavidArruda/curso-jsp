@@ -1,0 +1,64 @@
+
+
+
+<-- Criação banco -->
+CREATE DATABASE springboot
+  WITH OWNER = postgres
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'Portuguese_Brazil.1252'
+       LC_CTYPE = 'Portuguese_Brazil.1252'
+       CONNECTION LIMIT = -1;
+_________________________________________________________________________________
+
+<-- Criação de uma sequencia para chave primária -->
+CREATE SEQUENCE public.usuario_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 7
+  CACHE 1;
+ALTER TABLE public.usuario_id_seq
+  OWNER TO postgres;
+
+_________________________________________________________________________________
+
+<-- Criação de uma tabela -->
+CREATE TABLE public.usuario
+(
+  id bigint NOT NULL DEFAULT nextval('usuario_id_seq'::regclass),
+  nome character varying(90),
+  login character varying(20),
+  senha character varying(15),
+  CONSTRAINT usuario_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.usuario
+  OWNER TO postgres;
+
+_________________________________________________________________________________
+
+<-- Criação de uma view  com consulta entre varias tabelas -->
+create view v_listaTelefones as select p.nome, tel.numero, tel.tipo
+	from pessoa p left outer join telefone tel on p.id = tel.pessoa_id
+
+_________________________________________________________________________________
+<-- Criação trigger -->
+CREATE TRIGGER nome momento evento
+ON tabela
+FOR EACH ROW
+BEGIN
+/*corpo do código*/
+END
+
+_________________________________________________________________________________
+
+<-- Criação stored procedure -->
+DELIMITER $$
+CREATE PROCEDURE nome_procedimento (parâmetros)
+BEGIN
+    /*CORPO DO PROCEDIMENTO*/
+END $$
+DELIMITER 
